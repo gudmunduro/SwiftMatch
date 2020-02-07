@@ -1,3 +1,3 @@
 # SwiftMatch
 
-A description of this package.
+An attempt at recreating Rust's match in Swift, currently crashes the compiler
