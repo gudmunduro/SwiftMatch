@@ -7,8 +7,6 @@ struct MatchCase<T, R> {
 
 @_functionBuilder
 struct MatchBlock<T: Equatable, R> {
-    private let compareTo: T
-
     func buildBlock(_ cases: MatchCase<T, R>...) -> [MatchCase<T, R>] {
         return Array(cases)
     }
@@ -25,4 +23,5 @@ func match<T: Equatable, R>(_ value: T, @MatchBlock<T, R> cases: () -> [MatchCas
             return matchCase.run()
         }
     }
+    fatalError("No default case")
 }

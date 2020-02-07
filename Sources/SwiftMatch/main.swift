@@ -1,12 +1,9 @@
 
+let matchValue = 5
 
-func testThis() {
-    let test: Int = match(5) {
-        5 => { 6 }
-        6 => { 7 }
-    }
-    print(test)
-    
+let result: Int = match(matchValue) {
+    6 => { 8 }
+    7 => { 10 }
 }
 
-testThis()
+print(result)
