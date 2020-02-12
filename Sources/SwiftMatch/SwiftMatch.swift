@@ -1,6 +1,6 @@
 infix operator =>
 
-struct MatchCase<T, R> {
+struct MatchCase<T: Equatable, R> {
     let matchValue: T
     let run: () -> R
 }
@@ -12,7 +12,7 @@ struct MatchBlock<T: Equatable, R> {
     }
 }
 
-func =><T, R>(left: T, right: @escaping () -> R) -> MatchCase<T, R> {
+func =><T: Equatable, R>(left: T, right: @escaping () -> R) -> MatchCase<T, R> {
     MatchCase(matchValue: left, run: right)
 }
 
