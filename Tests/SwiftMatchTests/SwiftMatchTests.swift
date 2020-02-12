@@ -2,14 +2,15 @@ import XCTest
 @testable import SwiftMatch
 
 final class SwiftMatchTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SwiftMatch().text, "Hello, World!")
+    func testMatch() {
+        let result: Int = match(5) {
+            8 => { 5 }
+            5 => { 13 }
+        }
+        XCTAssertEqual(result, 13)
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testMatch", testMatch),
     ]
 }
