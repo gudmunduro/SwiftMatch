@@ -1,26 +1,26 @@
 infix operator =>
 
-struct MatchCase<T: Equatable, R> {
+struct MatchArm<T: Equatable, R> {
     let matchValue: T
     let run: () -> R
 }
 
 @_functionBuilder
 struct MatchBlock<T: Equatable, R> {
-    func buildBlock(_ cases: MatchCase<T, R>...) -> [MatchCase<T, R>] {
+    func buildBlock(_ cases: MatchArm<T, R>...) -> [MatchArm<T, R>] {
         return Array(cases)
     }
 }
 
-func =><T: Equatable, R>(left: T, right: @escaping () -> R) -> MatchCase<T, R> {
-    MatchCase(matchValue: left, run: right)
+func =><T: Equatable, R>(left: T, right: @escaping () -> R) -> MatchArm<T, R> {
+    MatchArm(matchValue: left, run: right)
 }
 
-func match<T: Equatable, R>(_ value: T, @MatchBlock<T, R> cases: () -> [MatchCase<T, R>]) -> R {
-    let matchCases = cases()
-    for matchCase in matchCases {
-        if matchCase.matchValue == value {
-            return matchCase.run()
+func match<T: Equatable, R>(_ value: T, @MatchBlock<T, R> arms: () -> [MatchArm<T, R>]) -> R {
+    let matchArms = arms()
+    for matchArm in matchArms {
+        if matchArm.matchValue == value {
+            return matchArm.run()
         }
     }
     fatalError("No default case")
